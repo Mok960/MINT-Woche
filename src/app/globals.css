@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #120d18;
+  --bg-soft: #1b1424;
+  --ink: #f6eefe;
+  --muted: #b7a8c9;
+  --line: rgba(255, 214, 240, 0.12);
+  --aurora: #8ef0c8;
+  --mint: #8ef0c8;
+  --lilac: #cbb6ff;
+  --violet: #cbb6ff;
+  --amber: #ffe08a;
+  --peach: #ffc2b6;
+  --sky: #9fd9ff;
+  --rose: #ffb0d4;
+  --danger: #ff8aa0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-aurora: var(--aurora);
+  --color-mint: var(--mint);
+  --color-lilac: var(--lilac);
+  --color-violet: var(--violet);
+  --color-amber: var(--amber);
+  --color-peach: var(--peach);
+  --color-sky: var(--sky);
+  --color-rose: var(--rose);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-syne);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(900px 520px at 8% -8%, rgba(203, 182, 255, 0.22), transparent 58%),
+    radial-gradient(820px 480px at 100% 0%, rgba(255, 194, 182, 0.16), transparent 52%),
+    radial-gradient(760px 420px at 50% 100%, rgba(142, 240, 200, 0.12), transparent 55%),
+    var(--bg);
+  color: var(--ink);
+}
+
+body::before,
+body::after {
+  pointer-events: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(203, 182, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(159, 217, 255, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+.site-shell {
+  position: relative;
+  z-index: 2;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(203, 182, 255, 0.35);
+  color: white;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(36, 26, 48, 0.86), rgba(22, 16, 30, 0.78));
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.glow-btn::after {
+  pointer-events: none;
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  80%,
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.6s ease-out infinite;
+}
+
+.field {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 214, 240, 0.14);
+  background: rgba(12, 8, 16, 0.55);
+  padding: 0.85rem 1rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.field:focus {
+  border-color: rgba(142, 240, 200, 0.7);
+  box-shadow: 0 0 0 4px rgba(142, 240, 200, 0.12);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.4);
+}
+
+/* Accessibility tweaks: increase contrast for muted text and colored backgrounds */
+:root {
+  --muted: #d4cbe0; /* slightly lighter for better contrast */
+}
+
+.glass .text-muted {
+  color: var(--muted) !important;
+}
+
+/* Make sure colored utility classes used in components provide enough contrast */
+.bg-peach\/15 { background-color: rgba(255,194,178,0.28) !important; }
+.bg-mint\/15 { background-color: rgba(142,240,200,0.28) !important; }
+.bg-lilac\/15 { background-color: rgba(203,182,255,0.22) !important; }
+.bg-sky\/20 { background-color: rgba(159,217,255,0.22) !important; }
+
+/* Ensure headings and body text on cards stay high-contrast */
+.glass h1, .glass h2, .glass h3, .glass p { color: var(--ink); }
